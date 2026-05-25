@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-bg: #ffffff;
+            --primary-color: #4a6cf7;
+            --primary-hover: #3858d6;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: var(--bg-gradient); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background-color: var(--card-bg); padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 100%; max-width: 480px; }
+        h1 { color: var(--text-main); font-size: 24px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .subtitle { color: var(--text-muted); font-size: 14px; text-align: center; margin-bottom: 32px; }
+        .form-group { position: relative; margin-bottom: 24px; }
+        .form-group input { width: 100%; padding: 14px 16px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 16px; outline: none; transition: all 0.3s ease; background-color: transparent; }
+        .form-group input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1); }
+        .form-group label { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); background-color: var(--card-bg); padding: 0 6px; color: var(--text-muted); transition: all 0.2s ease; pointer-events: none; }
+        .form-group input:focus ~ label, .form-group input:not(:placeholder-shown) ~ label { top: 0; font-size: 12px; color: var(--primary-color); font-weight: 600; }
+        .form-group input::placeholder { color: transparent; }
+        button { width: 100%; padding: 16px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; margin-top: 8px; }
+        button:hover { background-color: var(--primary-hover); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Performance Predictor</h1>
+        <p class="subtitle">Enter student data to estimate the final grade</p>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <input type="number" id="study_hours" name="study_hours" placeholder="Study Hours" required min="0" max="24" step="any">
+                <label for="study_hours">Study Hours / Day</label>
+            </div>
+            <div class="form-group">
+                <input type="number" id="attendance" name="attendance" placeholder="Attendance %" required min="0" max="100" step="any">
+                <label for="attendance">Attendance %</label>
+            </div>
+            <div class="form-group">
+                <input type="number" id="assignments_completed" name="assignments_completed" placeholder="Assignments Completed" required min="0">
+                <label for="assignments_completed">Assignments Completed</label>
+            </div>
+            <div class="form-group">
+                <input type="number" id="sleep_hours" name="sleep_hours" placeholder="Sleep Hours" required min="0" max="24" step="any">
+                <label for="sleep_hours">Sleep Hours / Day</label>
+            </div>
+            <div class="form-group">
+                <input type="number" id="previous_score" name="previous_score" placeholder="Previous Score" required min="0" max="100" step="any">
+                <label for="previous_score">Previous Score %</label>
+            </div>
+            <button type="submit">Generate Prediction</button>
+        </form>
+    </div>
+</body>
+</html>
