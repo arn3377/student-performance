@@ -55,9 +55,35 @@
             </div>
         </div>
         <div class="btn-stack">
-            <a href="/" class="btn btn-primary">Check New Student</a>
+            <a href="index.html" class="btn btn-primary">Check New Student</a>
             <button onclick="window.print()" class="btn btn-secondary">Print Report</button>
         </div>
     </div>
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const studyHours = Number(params.get("study_hours"));
+const attendance = Number(params.get("attendance"));
+const assignmentsCompleted = Number(params.get("assignments_completed"));
+const sleepHours = Number(params.get("sleep_hours"));
+const previousScore = Number(params.get("previous_score"));
+
+let prediction =
+    (studyHours * 5) +
+    (attendance * 0.3) +
+    (assignmentsCompleted * 2) +
+    (sleepHours * 1.5) +
+    (previousScore * 0.5);
+
+prediction = Math.round(prediction);
+
+if (prediction > 100) {
+    prediction = 100;
+}
+
+document.getElementById("predictionResult").innerText = prediction;
+
+</script>
 </body>
 </html>
